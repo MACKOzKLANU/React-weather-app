@@ -40,15 +40,24 @@ function ActualWeather() {
                 .map(hour => ({
                     temp_c: hour.temp_c,
                     time: hour.time.split(" ")[1],
-                    date: day.date
+                    date: day.date,
+                    image_src: hour.condition.icon,
+                    alt: hour.condition.text
                 }))
         ) || [];
 
     }
 
+    const getConsole = () => {
+        console.log("weather");
+        console.log(weather);
+        console.log(forecastTemperature);
+    }
+
     return (
         <div>
             <h1>Actual Weather</h1>
+            <button onClick={() => getConsole()}>getConsole</button>
             {weather && forecastTemperature ?
                 <>
                     <WeatherDetails weather={weather}></WeatherDetails>
