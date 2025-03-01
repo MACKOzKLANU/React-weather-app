@@ -1,6 +1,6 @@
 function WeatherDetails({ weather }) {
     return (
-        <div key={weather.location.name}>
+        <div className="weather-details" key={weather.location.name}>
             <h1>Actual Weather</h1>
 
             <p>City: {weather.location.name}, {weather.location.country}</p>

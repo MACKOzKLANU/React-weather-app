@@ -55,13 +55,13 @@ function ActualWeather() {
     }
 
     return (
-        <div>
+        <div className="actual-weather">
             <h1>Actual Weather</h1>
             <button onClick={() => getConsole()}>getConsole</button>
             {weather && forecastTemperature ?
                 <>
                     <WeatherDetails weather={weather}></WeatherDetails>
-                    <WeatherForecast forecast={weather.forecast}></WeatherForecast>
+                    {/* <WeatherForecast forecast={weather.forecast}></WeatherForecast> */}
                     <ForecastTemperature forecastTemperature={forecastTemperature}></ForecastTemperature>
                 </>
                 : <p>Loading...</p>}
