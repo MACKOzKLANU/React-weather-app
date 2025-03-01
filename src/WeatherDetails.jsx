@@ -1,16 +1,56 @@
-function WeatherDetails({ weather }) {
+import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
+import ForecastTemperature from "./ForecastTemperature";
+
+function WeatherDetails() {
+    const [forecastTemperature, setForecastTemperature] = useState(null);
+
+
+    const location = useLocation();
+    const weather = useMemo(() => location.state || {}, [location.state]);
+    console.log(weather);
+
+
+
+    useEffect(() => {
+
+        weather && setForecastTemperature(getFilteredForecast(weather));
+    }, [weather])
+    const getFilteredForecast = (weather) => {
+        return weather?.hour.flatMap(hour => ({
+
+                temp_c: hour.temp_c,
+                time: hour.time.split(" ")[1],
+                date: weather.date,
+                image_src: hour.condition.icon,
+                alt: hour.condition.text
+            }))
+    }
+
+    if (!weather) {
+        return <p>No weather data available</p>;
+    }
+
     return (
-        <div className="weather-details" key={weather.location.name}>
+        <div className="weather-details" key={"das"}>
             <h1>Actual Weather</h1>
 
-            <p>City: {weather.location.name}, {weather.location.country}</p>
-            <img src={`https:${weather.current.condition.icon}`} alt="Weather icon" />
-            <p>Temperature: {weather.current.temp_c}°C</p>
-            <p>Weather condition: {weather.current.condition.text}</p>
-            <p>Feels like: {weather.current.feelslike_c}°C</p>
-            <p>Humidity: {weather.current.humidity}%</p>
-            <p>Wind: {weather.current.wind_kph} km/h</p>
-        </div>
+            <p>Date: {weather.date}</p>
+            <img src={`https:${weather.day.condition.icon}`} alt="Weather icon" />
+            <p>{weather.day.condition.text}</p>
+            <p>Temperature: {weather.day.maxtemp_c}°C / {weather.day.mintemp_c}°C</p>
+            <p>Average temperature {weather.day.avgtemp_c}°C</p>
+            <p>Humidity: {weather.day.avghumidity}%</p>
+            <p>max Wind: {weather.day.maxwind_kph} km/h</p>
+            <p>visibility: {weather.day.avgvis_km} km</p>
+            <p>uv: {weather.day.uv}</p>
+
+            <h2>Forecast</h2>
+            <button onClick={() => console.log(forecastTemperature)}>getConsole</button>
+            {forecastTemperature &&
+            <ForecastTemperature forecastTemperature={forecastTemperature}></ForecastTemperature>
+        }
+            </div>
 
     )
 }

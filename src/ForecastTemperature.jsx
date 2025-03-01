@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 
+import "./styles/ForecastTemperature.css";
 const ITEM_WIDTH = 200;
 
 function ForecastTemperature({ forecastTemperature }) {

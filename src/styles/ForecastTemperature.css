@@ -1,0 +1,65 @@
+.forecast-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.forecast-temperature {
+    overflow: auto;
+    white-space: nowrap;
+    width: 50vw;;
+    background: #1e1e2f;
+    border-radius: 20px;
+    height: fit-content;
+
+    
+}
+
+.forecast-temperature::-webkit-scrollbar {
+    height: 8px; /* Adjust thickness */
+    width: 90%;
+}
+
+.forecast-temperature::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.forecast-temperature::-webkit-scrollbar-thumb {
+    background: #575767; /* Scroll thumb color */
+    border-radius: 10px;
+}
+
+.forecast-temperature::-webkit-scrollbar-thumb:hover {
+    background: #77778a; /* Lighter on hover */
+}
+
+
+.single-hour {
+    display: inline-block;
+    text-align: center;
+    padding: 1vw;
+
+}
+
+.arrow {
+    cursor: pointer;
+    height: 20vh;
+}
+.arrow:hover {
+    fill: #f1f1f1;
+    transition: 0.5s;
+}
+
+@media (max-width: 1000px) {
+    .arrow {
+        display: none;
+    }
+    .forecast-temperature {
+        width: 90vw;
+    }
+    .forecast-temperature::-webkit-scrollbar {
+        display: none;
+    }
+
+}

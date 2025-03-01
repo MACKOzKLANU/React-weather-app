@@ -1,19 +1,44 @@
+import { Link } from "react-router-dom";
+
 function WeatherForecast({ forecast }) {
+    console.log(forecast);
+    const getDay = (date) => {
+        const today = new Date().getDay();
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const day = new Date(date).getDay();
+        if (day === today && date === new Date().toISOString().split('T')[0]) {
+            return "Today";
+        }
+        return days[day];
+    }
+
+    const getConsoleLog = (weather) => {
+        console.log(weather)
+    }
     return (
         <div>
             <h2>Forecast</h2>
             {forecast.forecastday.map(day => (
-                <div key={day.date}>
-                    <p>Date: {day.date}</p>
-                    <img src={`https:${day.day.condition.icon}`} alt="Weather icon" />
-                    <p>Max temperature: {day.day.maxtemp_c}°C</p>
-                    <p>Min temperature: {day.day.mintemp_c}°C</p>
-                    <p>Average temperature: {day.day.avgtemp_c}°C</p>
-                    <p>Max wind: {day.day.maxwind_kph} km/h</p>
-                    <p>Total precipitation: {day.day.totalprecip_mm} mm</p>
-                </div>
-            ))}
-        </div>
+                <>
+                {/* <button onClick={() => getConsoleLog(day)}>getConsole</button> */}
+            
+                <Link to={`/forecast/${day.date}`}
+                    state={day}
+                    key={day.date}
+                >
+                    <div>
+                        <p>Date: {getDay(day.date)}</p>
+
+                        <img src={`https:${day.day.condition.icon}`} alt="Weather icon" />
+                        <p>{day.day.condition.text}</p>
+                        <p>{day.day.maxtemp_c}°C / {day.day.mintemp_c}°C</p>
+
+                    </div>
+                </Link>
+                </>
+            ))
+            }
+        </div >
 
     )
 }

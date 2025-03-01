@@ -4,6 +4,7 @@ import { fetchWeather } from "./api";
 import WeatherDetails from "./WeatherDetails";
 import WeatherForecast from "./WeatherForecast";
 import ForecastTemperature from "./ForecastTemperature";
+import TodayWeather from "./TodayWeather";
 
 function ActualWeather() {
     const [weather, setWeather] = useState(null);
@@ -48,20 +49,22 @@ function ActualWeather() {
 
     }
 
-    const getConsole = () => {
-        console.log("weather");
-        console.log(weather);
-        console.log(forecastTemperature);
-    }
+    // const getConsole = () => {
+    //     console.log("weather");
+    //     console.log(weather);
+    //     console.log(forecastTemperature);
+    // }
 
     return (
         <div className="actual-weather">
-            <h1>Actual Weather</h1>
-            <button onClick={() => getConsole()}>getConsole</button>
+            {/* <h1>Actual Weather</h1>
+            <button onClick={() => getConsole()}>getConsole</button> */}
             {weather && forecastTemperature ?
                 <>
-                    <WeatherDetails weather={weather}></WeatherDetails>
-                    {/* <WeatherForecast forecast={weather.forecast}></WeatherForecast> */}
+
+                    <TodayWeather weather={weather}></TodayWeather>
+                    {/* <h1>========</h1> */}
+                    <WeatherForecast forecast={weather.forecast}></WeatherForecast>
                     <ForecastTemperature forecastTemperature={forecastTemperature}></ForecastTemperature>
                 </>
                 : <p>Loading...</p>}
