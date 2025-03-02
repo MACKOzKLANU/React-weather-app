@@ -7,7 +7,6 @@ function WeatherDetails() {
 
     const location = useLocation();
     const weather = useMemo(() => location.state || {}, [location.state]);
-    console.log(weather);
 
     useEffect(() => {
         weather && setForecastTemperature(getFilteredForecast(weather));
