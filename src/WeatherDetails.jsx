@@ -5,26 +5,23 @@ import ForecastTemperature from "./ForecastTemperature";
 function WeatherDetails() {
     const [forecastTemperature, setForecastTemperature] = useState(null);
 
-
     const location = useLocation();
     const weather = useMemo(() => location.state || {}, [location.state]);
     console.log(weather);
 
-
-
     useEffect(() => {
-
         weather && setForecastTemperature(getFilteredForecast(weather));
     }, [weather])
+
     const getFilteredForecast = (weather) => {
         return weather?.hour.flatMap(hour => ({
 
-                temp_c: hour.temp_c,
-                time: hour.time.split(" ")[1],
-                date: weather.date,
-                image_src: hour.condition.icon,
-                alt: hour.condition.text
-            }))
+            temp_c: hour.temp_c,
+            time: hour.time.split(" ")[1],
+            date: weather.date,
+            image_src: hour.condition.icon,
+            alt: hour.condition.text
+        }))
     }
 
     if (!weather) {
@@ -45,12 +42,10 @@ function WeatherDetails() {
             <p>visibility: {weather.day.avgvis_km} km</p>
             <p>uv: {weather.day.uv}</p>
 
-            <h2>Forecast</h2>
-            <button onClick={() => console.log(forecastTemperature)}>getConsole</button>
             {forecastTemperature &&
-            <ForecastTemperature forecastTemperature={forecastTemperature}></ForecastTemperature>
-        }
-            </div>
+                <ForecastTemperature forecastTemperature={forecastTemperature}></ForecastTemperature>
+            }
+        </div>
 
     )
 }

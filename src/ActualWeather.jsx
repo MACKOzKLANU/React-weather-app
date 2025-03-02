@@ -7,6 +7,8 @@ import ForecastTemperature from "./ForecastTemperature";
 import TodayWeather from "./TodayWeather";
 import AirConditions from "./AirConditions";
 
+import "./styles/ActualWeather.css";
+
 function ActualWeather() {
     const [weather, setWeather] = useState(null);
     const [forecastTemperature, setForecastTemperature] = useState(null);
@@ -58,20 +60,22 @@ function ActualWeather() {
     // }
 
     return (
-        <div className="">
+        <div className="container">
             {/* <h1>Actual Weather</h1>
             <button onClick={() => getConsole()}>getConsole</button> */}
             {weather && forecastTemperature ?
                 <>
                     <div className="main-content">
-                        
-                    <TodayWeather weather={weather}></TodayWeather>
-                    {/* <h1>========</h1> */}
-                    <WeatherForecast forecast={weather.forecast}></WeatherForecast>
-                    <AirConditions weather={weather}></AirConditions>
+
+                        <TodayWeather weather={weather}></TodayWeather>
+                        {/* <h1>========</h1> */}
+                        <ForecastTemperature forecastTemperature={forecastTemperature}></ForecastTemperature>
+
+                        <AirConditions weather={weather}></AirConditions>
                     </div>
-                    <div className="daily-forecast">
-                    <ForecastTemperature forecastTemperature={forecastTemperature}></ForecastTemperature>
+                    <div>
+                        <WeatherForecast forecast={weather.forecast}></WeatherForecast>
+
                     </div>
                 </>
                 : <p>Loading...</p>}

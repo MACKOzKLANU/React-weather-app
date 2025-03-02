@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./styles/WeatherForecast.css";
 
 function WeatherForecast({ forecast }) {
     console.log(forecast);
@@ -15,26 +16,26 @@ function WeatherForecast({ forecast }) {
     const getConsoleLog = (weather) => {
         console.log(weather)
     }
+
     return (
-        <div>
-            <h2>Forecast</h2>
+        <div className="daily-forecast">
+            <h2>3-day Forecast</h2>
             {forecast.forecastday.map(day => (
                 <>
-                {/* <button onClick={() => getConsoleLog(day)}>getConsole</button> */}
-            
-                <Link to={`/forecast/${day.date}`}
-                    state={day}
-                    key={day.date}
-                >
-                    <div>
-                        <p>Date: {getDay(day.date)}</p>
 
-                        <img src={`https:${day.day.condition.icon}`} alt="Weather icon" />
-                        <p>{day.day.condition.text}</p>
-                        <p>{day.day.maxtemp_c}°C / {day.day.mintemp_c}°C</p>
+                    <Link to={`/forecast/${day.date}`}
+                        state={day}
+                        key={day.date}
+                    >
+                        <div className="daily-item">
+                            <p>Date: {getDay(day.date)}</p>
 
-                    </div>
-                </Link>
+                            <img src={`https:${day.day.condition.icon}`} alt="Weather icon" />
+                            <p>{day.day.condition.text}</p>
+                            <p>{day.day.maxtemp_c}°C / {day.day.mintemp_c}°C</p>
+
+                        </div>
+                    </Link>
                 </>
             ))
             }

@@ -11,14 +11,12 @@ function ForecastTemperature({ forecastTemperature }) {
     const handleScroll = (scrollAmount) => {
 
         const newScrollPosition = scrollPosition + scrollAmount;
-        const maxScroll = containerRef.current.scrollWidth - containerRef.current.clientWidth + ITEM_WIDTH; 
+        const maxScroll = containerRef.current.scrollWidth - containerRef.current.clientWidth + ITEM_WIDTH;
         if (newScrollPosition < 0 || newScrollPosition > maxScroll) {
             return;
         }
         setScrollPosition(newScrollPosition);
-
         containerRef.current.scrollLeft = newScrollPosition;
-
 
     };
 
@@ -40,12 +38,12 @@ function ForecastTemperature({ forecastTemperature }) {
                     overflowX: "scroll",
                     scrollBehavior: "smooth"
                 }}
-
             >
-                <div className="content-box">
+
+                <div className="forecast-section">
                     {
                         forecastTemperature.map((hour, index) => (
-                            <div className="single-hour" key={index}>
+                            <div className="forecast-item" key={index}>
                                 <p key={index}>{hour.time} </p>
                                 <img src={`https:${hour.image_src}`} alt={hour.alt} />
                                 <p>{hour.temp_c} °C</p>

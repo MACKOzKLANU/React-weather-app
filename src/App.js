@@ -6,8 +6,7 @@ import WeatherDetails from './WeatherDetails';
 function App() {
   return (
     <BrowserRouter>
-      <div className='container'>
-
+      <div>
         <Routes>
           <Route path='/' element={<ActualWeather></ActualWeather>}></Route>
           <Route path='/forecast/:date' element={<WeatherDetails ></WeatherDetails>}></Route>

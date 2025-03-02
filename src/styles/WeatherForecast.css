@@ -1,0 +1,44 @@
+.daily-forecast {
+    background-color: #1e1e2f;
+    border-radius: 20px;
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: dotted;
+}
+
+.daily-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.daily-item a,
+p {
+    color: #f1f1f1;
+    text-decoration: dotted;
+}
+
+@media (max-width: 800px) {
+    .daily-forecast {
+        display: flex;
+        flex-direction: column;
+        width: 80vw;
+        
+    }
+}
+/* Responsive for smaller screens */
+@media (max-width: 80%) {
+    .weather-main {
+        grid-template-columns: 1fr;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+    }
+    .weather-icon {
+        width: 100%;
+        justify-content:center;
+    }
+}
